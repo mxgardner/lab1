@@ -67,3 +67,10 @@ int main void (){
 
     return 0;
 }
+
+// Operation 1: Print counters by index
+void print_counters_by_index(int n, int map[], int count[]) {
+    for (int i = 0; i < n; i++) {
+        printf("%d %d\n", i, count[map[i]]);
+    }
+}
