@@ -1,6 +1,7 @@
 // Mariah Gardner
 // 1001576678
-// TODO: add command line used to compile code
+// gcc -std=c99 -o lab1 lab1.c
+// ./lab1 < input.txt
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -13,7 +14,7 @@ void decrement_counter(int i, int map[], int index[], int count[], int n);
 int binary_search(int index[], int n, int i);
 int count_in_range(int i, int j, int count[], int n);
 
-int main void (){
+int main(){
 
     int n;
     scanf("%d", &n);
@@ -116,4 +117,18 @@ void decrement_counter(int i, int map[], int index[], int count[], int n) {
             break;
         }
     }
+}
+
+// Operation 5: Count counters within the range [i, j]
+int count_in_range(int i, int j, int count[], int n) {
+    int low = 0, high = n - 1;
+    int rangeCount = 0;
+
+    // Binary search for counting counters in the range [i, j]
+    for (int k = 0; k < n; k++) {
+        if (count[k] >= i && count[k] <= j) {
+            rangeCount++;
+        }
+    }
+    return rangeCount;
 }
