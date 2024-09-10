@@ -16,39 +16,54 @@ int count_in_range(int i, int j, int count[], int n);
 int main void (){
 
     int n;
-    
-    // Read the first input value, which is 'n'
     scanf("%d", &n);
 
-    // Create arrays dynamically based on 'n'
-    int count[n];
+    // Allocate arrays
+    int* count = (int*)malloc(n * sizeof(int));    // Holds counter values
+    int* map = (int*)malloc(n * sizeof(int));      // Maps index to position in count
+    int* index = (int*)malloc(n * sizeof(int));    // Holds the order by value of counters
+
+    // Initialize arrays
     for (int i = 0; i < n; i++) {
-        count[i] = 0;  // Initialize counters to 0
+        count[i] = 0;
+        map[i] = i;
+        index[i] = i;
     }
 
-    int index[n];
-    for (int i = 0; i < n; i++) {
-        index[i] = 0;
-    }
+    int op, i, j;
 
-    int map[n];
-    for (int i = 0; i < n; i++) {
-        map[i] = 0;
-    }
-
-    // Loop to read operations until termination (operation 0)
-    int operation;
-    while (scanf("%d", &operation) && operation != 0) {
-        if (operation == 1) {
-            for(int i = 0; i < n; i++)
-                printf("%d %d", i, count[map[i]]);
-        } else if (operation == 2) {
-            for(int i = 0; i < n; i++)
-                printf("%d %d", index[i], count[i])
-        } else if (operation == 3) {
-
+    // Read operations from stdin
+    while (1) {
+        scanf("%d", &op);
+        if (op == 0) {
+            // Terminate execution
+            break;
+        } else if (op == 1) {
+            // Print counters by index
+            print_counters_by_index(n, map, count);
+        } else if (op == 2) {
+            // Print counters by value
+            print_counters_by_value(n, index, count);
+        } else if (op == 3) {
+            // Increment counter by index i
+            scanf("%d", &i);
+            increment_counter(i, map, index, count, n);
+        } else if (op == 4) {
+            // Decrement counter by index i
+            scanf("%d", &i);
+            decrement_counter(i, map, index, count, n);
+        } else if (op == 5) {
+            // Count counters within the range [i, j]
+            scanf("%d %d", &i, &j);
+            int result = count_in_range(i, j, count, n);
+            printf("%d\n", result);
         }
     }
+
+    // Free dynamically allocated memory
+    free(count);
+    free(map);
+    free(index);
 
     return 0;
 }
