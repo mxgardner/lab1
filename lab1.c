@@ -99,3 +99,21 @@ void increment_counter(int i, int map[], int index[], int count[], int n) {
         }
     }
 }
+
+// Operation 4: Decrement counter by index i
+void decrement_counter(int i, int map[], int index[], int count[], int n) {
+    int pos = map[i];
+    count[pos]--;
+
+    // Binary search to maintain order in the index array
+    for (int j = pos; j > 0; j--) {
+        if (count[j] < count[j - 1]) {
+            // Swap counters in the index array
+            int tempIndex = index[j];
+            index[j] = index[j - 1];
+            index[j - 1] = tempIndex;
+        } else {
+            break;
+        }
+    }
+}
