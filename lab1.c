@@ -81,3 +81,21 @@ void print_counters_by_value(int n, int index[], int count[]) {
         printf("%d %d\n", index[i], count[i]);
     }
 }
+
+// Operation 3: Increment counter by index i
+void increment_counter(int i, int map[], int index[], int count[], int n) {
+    int pos = map[i];
+    count[pos]++;
+    
+    // Binary search to maintain order in the index array
+    for (int j = pos; j < n - 1; j++) {
+        if (count[j] > count[j + 1]) {
+            // Swap counters in the index array
+            int tempIndex = index[j];
+            index[j] = index[j + 1];
+            index[j + 1] = tempIndex;
+        } else {
+            break;
+        }
+    }
+}
