@@ -3,6 +3,15 @@
 // TODO: add command line used to compile code
 
 #include <stdio.h>
+#include <stdlib.h>
+
+// Function prototypes
+void print_counters_by_index(int n, int map[], int count[]);
+void print_counters_by_value(int n, int index[], int count[]);
+void increment_counter(int i, int map[], int index[], int count[], int n);
+void decrement_counter(int i, int map[], int index[], int count[], int n);
+int binary_search(int index[], int n, int i);
+int count_in_range(int i, int j, int count[], int n);
 
 int main void (){
 
@@ -31,10 +40,14 @@ int main void (){
     int operation;
     while (scanf("%d", &operation) && operation != 0) {
         if (operation == 1) {
-            // Add operations for values
+            for(int i = 0; i < n; i++)
+                printf("%d %d", i, count[map[i]]);
         } else if (operation == 2) {
+            for(int i = 0; i < n; i++)
+                printf("%d %d", index[i], count[i])
+        } else if (operation == 3) {
+
         }
-        // Continue conditions
     }
 
     return 0;
